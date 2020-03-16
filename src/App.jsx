@@ -61,7 +61,7 @@ export class App extends React.Component {
       )
     }
     return (
-      <>
+      <div className="page">
       <h1>YuChat</h1>
       <div className='content'>
         <div className='container'>
@@ -70,7 +70,7 @@ export class App extends React.Component {
         </div>
         <UserList users={this.state.users}/>
       </div>
-      </>
+      </div>
     )
   }
 }
