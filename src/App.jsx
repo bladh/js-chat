@@ -52,11 +52,19 @@ export class App extends React.Component {
       )
     }
     return (
-      <div className='container'>
-        <h1>YuChat</h1>
-        <MessageWindow messages={this.state.messages} username={this.state.username} />
-        <TextBar onSend={sendMessage} />
+      <>
+      <h1>YuChat</h1>
+      <div className='content'>
+        <div className='container'>
+          <MessageWindow messages={this.state.messages} username={this.state.username} />
+          <TextBar onSend={sendMessage} />
+        </div>
+        <div className='friend_list'>
+          <h4>Friends</h4>
+          <p>No friends online.</p>
+        </div>
       </div>
+      </>
     )
   }
 }
