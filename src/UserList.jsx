@@ -11,8 +11,8 @@ export default class UserList extends React.Component {
       <div className='friend_list'>
         <h4>Users online</h4>
         <div className='list'>
-          {users.map((user, i) => {
-            return <User key={i} name={user} />
+          {users.map((user) => {
+            return <User key={user.id} name={user.username} />
           })}
         </div>
       </div>

@@ -26,9 +26,9 @@ export class App extends React.Component {
       })
     }
     if ('user_list' in msg) {
-      console.log("Set new users")
-      console.log(msg)
-      this.setState({users: msg.user_list})
+      const lista = msg.user_list
+      console.log(lista)
+      this.setState({users: lista})
     }
   }
 

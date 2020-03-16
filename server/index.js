@@ -19,7 +19,7 @@ const broadcast = (message) => {
 
 const update_user_list = () => {
   const user_list = Object.keys(users).map((id) => {
-    return users[id].name
+    return {username: users[id].name, id:id }
   })
   const json = JSON.stringify({
     user_list: user_list,
@@ -27,6 +27,23 @@ const update_user_list = () => {
   connections.forEach((conn) => {
     conn.send(json)
   })
+}
+
+const privmsg = (from_id, to_id, message) => {
+  if (!'from_id' in users) {
+    console.log("Sending privmsg from nonexisting user")
+    return
+  }
+  if (!'to_id' in users) {
+    console.log("Sending privmsg to nonexisting user")
+    return
+  }
+  const msg = {
+    'username': users[from_id].name,
+    'text': message,
+    'private': true,
+  }
+  users[to_id].ws.send(JSON.stringify(msg))
 }
 
 // We define a handler that will be called everytime a new
@@ -48,7 +65,7 @@ const wsHandler = (ws) => {
         connections.delete(ws)
         return
       }
-      // logging in action
+
       name = data.username
       users[id] = {
         name: name,
