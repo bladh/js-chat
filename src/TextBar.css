@@ -1,14 +1,17 @@
 .textbar {
+  margin: 10px;
   display: flex;
   align-items: stretch;
 }
 
 .textbar-input {
   flex-grow: 1;
+  background-color: #ffffffaa;
   box-sizing: border-box;
 }
 
 .textbar-send {
   border-radius: 0;
   border: none;
+  margin: 5px;
 }

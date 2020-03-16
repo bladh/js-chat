@@ -1,16 +1,18 @@
 .message-window {
-  height: 600px;
+  height: 300px;
   overflow-y: scroll;
-  border: 1px solid #27213c;
+  background-color: #ffffffee;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
   padding: 5px 10px;
+  margin: 10px;
 }
 
 .message {
   align-self: flex-start;
   width: 80%;
-  background-color: #f5fbef;
+  background-color: #ffffff;
   border: 1px solid #c7e2c9;
   padding: 4px;
   border-radius: 4px;
@@ -19,12 +21,19 @@
 
 .message-self {
   align-self: flex-end;
-  background-color: #d1beb0;
-  border: 1px solid #c49f94;
+  background-color: #f5fbef;
+  border: 1px solid #c7e2c9;
+}
+
+.message-service {
+  color: red;
+  background-color: black;
+  width: 100%;
 }
 
 .message-username {
   font-size: 12px;
+
   font-weight: bold;
   color: #5a352a;
 }
