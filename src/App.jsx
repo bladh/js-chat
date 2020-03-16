@@ -2,12 +2,14 @@ import React from 'react'
 import './App.css'
 
 import MessageWindow from './MessageWindow'
+import UserList from './UserList.jsx'
 import TextBar from './TextBar'
 import { registerOnMessageCallback, send } from './websocket'
 
 export class App extends React.Component {
   state = {
     messages: [],
+    users: [],
     username: null
   }
 
@@ -18,9 +20,16 @@ export class App extends React.Component {
 
   onMessageReceived (msg) {
     msg = JSON.parse(msg)
-    this.setState({
-      messages: this.state.messages.concat(msg)
-    })
+    if ('text' in msg) {
+      this.setState({
+        messages: this.state.messages.concat(msg)
+      })
+    }
+    if ('user_list' in msg) {
+      console.log("Set new users")
+      console.log(msg)
+      this.setState({users: msg.user_list})
+    }
   }
 
   logIn (name) {
@@ -59,10 +68,7 @@ export class App extends React.Component {
           <MessageWindow messages={this.state.messages} username={this.state.username} />
           <TextBar onSend={sendMessage} />
         </div>
-        <div className='friend_list'>
-          <h4>Friends</h4>
-          <p>No friends online.</p>
-        </div>
+        <UserList users={this.state.users}/>
       </div>
       </>
     )

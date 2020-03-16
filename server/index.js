@@ -1,6 +1,7 @@
 // import the express and express-ws libraries
 const express = require('express')
 const expressWs = require('express-ws')
+const uuid = require('uuid/v4')
 
 // create a new express application
 const app = express()
@@ -16,11 +17,24 @@ const broadcast = (message) => {
   connections.forEach((conn) => conn.send(JSON.stringify(message)))
 }
 
+const update_user_list = () => {
+  const user_list = Object.keys(users).map((id) => {
+    return users[id].name
+  })
+  const json = JSON.stringify({
+    user_list: user_list,
+  })
+  connections.forEach((conn) => {
+    conn.send(json)
+  })
+}
+
 // We define a handler that will be called everytime a new
 // Websocket connection is made
 const wsHandler = (ws) => {
   // Add the connection to our set
   connections.add(ws)
+  const id = uuid()
   var name;
 
   // We define the handler to be called everytime this
@@ -36,11 +50,15 @@ const wsHandler = (ws) => {
       }
       // logging in action
       name = data.username
-      users[name] = ws
+      users[id] = {
+        name: name,
+        ws: ws,
+      }
       const welcome = {
         username: "Administrator",
         text: "Welcome " + name
       }
+      update_user_list()
       broadcast(welcome)
     } else {
       if (!name) {
@@ -60,6 +78,8 @@ const wsHandler = (ws) => {
   ws.on('close', () => {
     // The closed connection is removed from the set
     connections.delete(ws)
+    delete users[id];
+    update_user_list()
   })
 }
 

@@ -25,6 +25,8 @@ div.enter_name {
 div.friend_list {
   background-color: #ffffffee;
   display: flex;
+  min-width: 200px;
+  max-width:400px;
   flex-basis: auto;
   flex-direction: column;
   border-radius: 8px;
