@@ -23,35 +23,37 @@ export class App extends React.Component {
     })
   }
 
-  setUserName (name) {
-    this.setState({
+  logIn (name) {
+    this.setState({ username: name })
+    const login_message = {
       username: name
-    })
+    }
+    send(JSON.stringify(login_message))
   }
 
   sendMessage (text) {
     const message = {
-      username: this.state.username,
       text: text
     }
     send(JSON.stringify(message))
   }
 
   render () {
-    const setUserName = this.setUserName.bind(this)
+    const logIn = this.logIn.bind(this)
     const sendMessage = this.sendMessage.bind(this)
 
     if (this.state.username === null) {
       return (
         <div className='container'>
-          <div className='container-title'>Enter username</div>
-          <TextBar onSend={setUserName} />
+          <h1>YuChat</h1>
+          <div className='enter_name'>Enter username</div>
+          <TextBar onSend={logIn} />
         </div>
       )
     }
     return (
       <div className='container'>
-        <div className='container-title'>Messages</div>
+        <h1>YuChat</h1>
         <MessageWindow messages={this.state.messages} username={this.state.username} />
         <TextBar onSend={sendMessage} />
       </div>

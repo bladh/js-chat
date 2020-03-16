@@ -9,6 +9,10 @@
   margin: 10px;
 }
 
+input {
+  box-shadow: inset 0px 0px 0px 0px red;
+}
+
 .message {
   align-self: flex-start;
   width: 80%;

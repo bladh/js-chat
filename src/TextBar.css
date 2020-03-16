@@ -6,12 +6,24 @@
 
 .textbar-input {
   flex-grow: 1;
-  background-color: #ffffffaa;
-  box-sizing: border-box;
+  background-color: #ffffffee;
+  border: none;
 }
 
 .textbar-send {
-  border-radius: 0;
   border: none;
-  margin: 5px;
+  color: white;
+  text-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  background-color: #4CDF78;
+  border-color: #53A574;
+  transition: text-shadow 0.3s ease;
 }

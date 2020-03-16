@@ -15,6 +15,11 @@ h1 {
   margin: auto;
 }
 
+div.enter_name {
+  color: white;
+  font-weight: bold;
+}
+
 html {
   background: url(images/bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
