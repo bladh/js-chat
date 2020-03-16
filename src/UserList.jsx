@@ -9,7 +9,7 @@ export default class UserList extends React.Component {
     const { users = [] } = this.props
     return (
       <div className='friend_list'>
-        <h4>Friends</h4>
+        <h4>Users online</h4>
         <div className='list'>
           {users.map((user, i) => {
             return <User key={i} name={user} />

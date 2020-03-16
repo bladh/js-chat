@@ -59,7 +59,7 @@ const wsHandler = (ws) => {
         text: "Welcome " + name
       }
       update_user_list()
-      broadcast(welcome)
+      ws.send(JSON.stringify({username: "Administrator", text:"Welcome " + name + "."}))
     } else {
       if (!name) {
         console.log("Received message from connection that has not set a username")
