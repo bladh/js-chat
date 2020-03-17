@@ -8,6 +8,15 @@ const User = ({ user }) => (
 )
 
 export default class UserList extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.users) {
+      return (this.props.users.length !== nextProps.users.length)
+    } else {
+      return true
+    }
+  }
+
   render () {
     console.log("Re-rendering userlist!")
     const { users = [], priv_msg_user } = this.props
